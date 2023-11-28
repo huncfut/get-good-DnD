@@ -1,5 +1,4 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
 
 data = pd.read_csv("./data/over_one_mil_chars.csv")
 data = data.rename(columns={"stats_1": "s_str", "stats_2": "s_dex", "stats_3": "s_con", "stats_4": "s_int", "stats_5": "s_wis", "stats_6": "s_cha"})
@@ -19,8 +18,14 @@ filtered_data = filtered_data[filtered_data["s_wis"] > 0]
 filtered_data = filtered_data[filtered_data["s_cha"] > 0]
 filtered_data = filtered_data[filtered_data["total_level"] <= 20]
 
-#print(len(filtered_data))
-
 filtered_data = filtered_data[cols_to_keep]
+
+#I don't know a cleaner way to do this, so fix if you know a better way
+for i, e in enumerate(filtered_data["class_starting"]):
+    if (e == "Blood Hunter (archived)"):
+        filtered_data.iat[i, 10] = "Blood Hunter"
+    if (e == "Artificer (UA)"):
+        filtered_data.iat[i, 10] = "Artificer"
+
 
 filtered_data.to_csv("./data/dndData.csv", index=False)
