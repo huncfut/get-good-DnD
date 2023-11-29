@@ -1,5 +1,6 @@
 import pandas as pd
 
+convertToNumber = False
 data = pd.read_csv("./data/over_one_mil_chars.csv")
 data = data.rename(columns={"stats_1": "s_str", "stats_2": "s_dex", "stats_3": "s_con", "stats_4": "s_int", "stats_5": "s_wis", "stats_6": "s_cha"})
 
@@ -27,5 +28,8 @@ for i, e in enumerate(filtered_data["class_starting"]):
     if (e == "Artificer (UA)"):
         filtered_data.iat[i, 10] = "Artificer"
 
+if (convertToNumber):
+    for i, f in enumerate(filtered_data["class_starting"].unique()):
+        filtered_data.loc[filtered_data["class_starting"] == f, "class_starting"] = i
 
 filtered_data.to_csv("./data/dndData.csv", index=False)
