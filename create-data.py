@@ -19,13 +19,6 @@ filtered_data = filtered_data[filtered_data["s_cha"] > 0]
 filtered_data = filtered_data[filtered_data["total_level"] <= 20]
 
 filtered_data = filtered_data[cols_to_keep]
-
-#I don't know a cleaner way to do this, so fix if you know a better way
-for i, e in enumerate(filtered_data["class_starting"]):
-    if (e == "Blood Hunter (archived)"):
-        filtered_data.iat[i, 10] = "Blood Hunter"
-    if (e == "Artificer (UA)"):
-        filtered_data.iat[i, 10] = "Artificer"
-
+filtered_data = filtered_data.replace(["Blood Hunter (archived)", "Artificer (UA)"], ["Blood Hunter", "Artificer"])
 
 filtered_data.to_csv("./data/dndData.csv", index=False)
