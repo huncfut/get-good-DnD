@@ -1,5 +1,6 @@
 import pandas as pd
 
+convertToNumber = False
 data = pd.read_csv("./data/over_one_mil_chars.csv")
 data = data.rename(columns={"stats_1": "s_str", "stats_2": "s_dex", "stats_3": "s_con", "stats_4": "s_int", "stats_5": "s_wis", "stats_6": "s_cha"})
 
