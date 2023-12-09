@@ -27,7 +27,7 @@ test_acc = accuracy_score(y_test, y_predict)
 
 print("Train Accuracy: " + str(train_acc) + " Test Accuracy: " + str(test_acc))
 
-vals = np.array()
+vals = []
 for s in stats_names:
     vals.append(int(input("Enter " + s + ": ")))
 
