@@ -18,8 +18,10 @@ filtered_data = filtered_data[filtered_data["s_int"] > 0]
 filtered_data = filtered_data[filtered_data["s_wis"] > 0]
 filtered_data = filtered_data[filtered_data["s_cha"] > 0]
 filtered_data = filtered_data[filtered_data["total_level"] <= 20]
+filtered_data = filtered_data[filtered_data["notes_len"] > 0]
+filtered_data = filtered_data[filtered_data["total_level"] > 1]
 
 filtered_data = filtered_data[cols_to_keep]
 filtered_data = filtered_data.replace(["Blood Hunter (archived)", "Artificer (UA)"], ["Blood Hunter", "Artificer"])
 
-filtered_data.to_csv("./data/dndData.csv", index=False)
+filtered_data.to_csv("./data/dndDataStripped.csv", index=False)

@@ -9,7 +9,7 @@ warnings.filterwarnings("ignore")
 
 stats = ["s_str", "s_dex", "s_con", "s_int", "s_wis", "s_cha"]
 stats_names = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charmisma"]
-data = pd.read_csv("./data/proportionalData.csv")
+data = pd.read_csv("./data/proportionalDataStripped.csv")
 
 downsized_stats = pd.DataFrame(columns=["s_str", "s_dex", "s_con", "s_int", "s_wis", "s_cha", "class_starting"])
 for c in data["class_starting"].unique():
@@ -27,9 +27,9 @@ test_acc = accuracy_score(y_test, y_predict)
 
 print("Train Accuracy: " + str(train_acc) + " Test Accuracy: " + str(test_acc))
 
-vals = []
+vals = np.array()
 for s in stats_names:
-    vals.append(float(input("Enter " + s + ": "))/18)
+    vals.append(int(input("Enter " + s + ": ")))
 
-val_acc = clf.predict([vals])
+val_acc = clf.predict(vals / np.max(vals))
 print("Best Class: ", val_acc[0])
